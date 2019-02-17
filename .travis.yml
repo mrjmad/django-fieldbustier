@@ -1,0 +1,22 @@
+dist: xenial
+
+language: python
+
+python:
+  - "3.6"
+  
+services:
+  - mysql
+
+before_install:
+  - mysql -e 'CREATE DATABASE fieldbustier;'
+  
+env:
+  - TOX_ENV=lints
+  - TOX_ENV=django111
+
+script:
+  tox -e $TOX_ENV
+
+install:
+  - pip install tox
