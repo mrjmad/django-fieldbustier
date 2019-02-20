@@ -87,6 +87,21 @@ DELETE_FIELD_DJANGO_FIELDBUSTIER = [DeleteFieldBustierConfig("demo_app",
                                                              "int_field")]
 ```
 
+## Migrations
+
+### GENERATE_FIELDBUSTIER_MIGRATIONS option
+
+If you have used SQL to directly implement your changes, then you will not want the migrations to be generated.
+
+To do this, you just have to set (in your settings) GENERATE_FIELDBUSTIER_MIGRATIONS at False.
+
+### Location of migration files
+
+By default, the migration files of an application are located in the application. In our case, if you use Django-Fieldbustier, it is to avoid modifying the target application. This behavior is therefore not appropriate at all.
+
+To avoid this, simply use django's MIGRATION_MODULES variable to choose where you want your migrations to be generated.
+
+
 
 ## Thanks
 
