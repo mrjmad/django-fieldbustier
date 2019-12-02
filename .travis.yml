@@ -14,6 +14,9 @@ before_install:
 env:
   - TOX_ENV=lints
   - TOX_ENV=django111
+  - TOX_ENV=django20
+  - TOX_ENV=django21
+  - TOX_ENV=django22
 
 script:
   tox -e $TOX_ENV
