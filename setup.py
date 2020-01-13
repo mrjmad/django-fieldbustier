@@ -20,6 +20,7 @@ setup(
     license='MIT License',
     url='',
     long_description=readme(),
+    long_description_content_type="text/markdown",
     keywords='',
     packages=['django_fieldbustier'],
     include_package_data=True,
