@@ -34,15 +34,11 @@ def parse_fields_for_fieldbustier(add_list_fields):
     return fields
 
 
-fields_for_fieldbustier = parse_fields_for_fieldbustier(getattr(settings, "ADD_FIELD_DJANGO_FIELDBUSTIER", []))
-
-replace_fields_for_fieldbustier = parse_fields_for_fieldbustier(
-    getattr(settings, "REPLACE_FIELD_DJANGO_FIELDBUSTIER", [])
-)
-
-delete_fields_for_fieldbustier = getattr(settings, "DELETE_FIELD_DJANGO_FIELDBUSTIER", [])
-
 GENERATE_MIGRATIONS = getattr(settings, "GENERATE_FIELDBUSTIER_MIGRATIONS", True)
+
+fields_for_fieldbustier = defaultdict(list)
+replace_fields_for_fieldbustier = defaultdict(list)
+delete_fields_for_fieldbustier = list()
 
 
 def add_fields_to_model(sender, **kwargs):
@@ -81,6 +77,16 @@ class FieldBustierConfig(AppConfig):
     def ready(self):
         if "makemigrations" in argv and not GENERATE_MIGRATIONS:
             return
+
+        fields_for_fieldbustier.update(
+            parse_fields_for_fieldbustier(getattr(settings, "ADD_FIELD_DJANGO_FIELDBUSTIER", []))
+        )
+
+        replace_fields_for_fieldbustier.update(
+            parse_fields_for_fieldbustier(getattr(settings, "REPLACE_FIELD_DJANGO_FIELDBUSTIER", []))
+        )
+
+        delete_fields_for_fieldbustier.extend(getattr(settings, "DELETE_FIELD_DJANGO_FIELDBUSTIER", []))
 
         for model_key in fields_for_fieldbustier:
             apps.lazy_model_operation(add_fields_to_model, model_key)
