@@ -14,11 +14,11 @@ def readme():
 setup(
     name='django-fieldbustier',
     version=version,
-    description='It allows modifying a model of an django app from the outside, without modifying the code of the app.',
+    description='A package that allows modifying a model of any django app from the outside, without modifying the code of the app itself.',
     author='MrJmad',
     author_email='j-mad@j-mad.com',
     license='MIT License',
-    url='',
+    url='https://github.com/mrjmad/django-fieldbustier',
     long_description=readme(),
     long_description_content_type="text/markdown",
     keywords='',
