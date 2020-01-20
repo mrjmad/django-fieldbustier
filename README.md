@@ -10,7 +10,9 @@ And in French, a pirate is also a "flibustier", a word quite close to fieldbusti
 
 ## How to use django-fieldbustier
 
-you must declare the fields you want to add, modify, or delete in your settings.
+First, add "django_fieldbustier" to your installed apps, above any apps that you intend to modify.
+
+Then, you must declare the fields you want to add, modify, or delete in your settings.
 
 There are three configuration variables that are:
 - ADD_FIELD_DJANGO_FIELDBUSTIER to add fields
