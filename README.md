@@ -1,6 +1,6 @@
 # django-fieldbustier
 
-The purpose of this django-app is to allow you to add fields to models from another application.
+The purpose of this django-app is to allow you to add, delete, or modify fields in models from third-party applications outside of your django project.
 
 ## Why this name?
 
@@ -8,16 +8,18 @@ Because wanting to add models from another django-app, from your own, is a bit l
 
 And in French, a pirate is also a "flibustier", a word quite close to fieldbustier, so -> django-fieldbustier.
 
-## How to use it django-fieldbustier
+## How to use django-fieldbustier
 
-you must declare the fields you want to add, modify or delete in your settings.
+First, add "django_fieldbustier" to your installed apps, above any apps that you intend to modify.
+
+Then, you must declare the fields you want to add, modify, or delete in your settings.
 
 There are three configuration variables that are:
 - ADD_FIELD_DJANGO_FIELDBUSTIER to add fields
 - REPLACE_FIELD_DJANGO_FIELDBUSTIER to modify fields
 - DELETE_FIELD_DJANGO_FIELDBUSTIER to delete fields
 
-To add or modify fields you must use `FieldBustierConfig`. To delete people you must use `DeleteFieldBustierConfig`.
+To add or modify fields you must use `FieldBustierConfig`. To delete fields you must use `DeleteFieldBustierConfig`.
 
 
 `FieldBustierConfig` are `namedtuple` with these attributes :
@@ -93,14 +95,21 @@ DELETE_FIELD_DJANGO_FIELDBUSTIER = [DeleteFieldBustierConfig("demo_app",
 
 If you have used SQL to directly implement your changes, then you will not want the migrations to be generated.
 
-To do this, you just have to set (in your settings) GENERATE_FIELDBUSTIER_MIGRATIONS at False.
+To do this, you just have to set (in your settings) GENERATE_FIELDBUSTIER_MIGRATIONS to False.
 
 ### Location of migration files
 
-By default, the migration files of an application are located in the application. In our case, if you use Django-Fieldbustier, it is to avoid modifying the target application. This behavior is therefore not appropriate at all.
+By default, the migration files of an application are located in the application. In our case, if you use Django-Fieldbustier, we want to avoid modifying the target application. The default behavior is therefore not appropriate at all.
 
-To avoid this, simply use django's MIGRATION_MODULES variable to choose where you want your migrations to be generated.
+To avoid this, simply use django's MIGRATION_MODULES variable to choose where you want your migrations to be generated. Ideally, this should be done at the beginning of a project to avoid issues.
 
+For instance, if editing a model in the built-in django app `auth`, we might want to save the migrations in our local `users` app. In this case, we could add the following to settings:
+
+```
+MIGRATION_MODULES = {'auth': 'users.migrations_auth'}
+```
+
+This requires copying the original `auth` migrations to the `migrations_auth` folder inside your `users` app. Now your project will look for (and add) migrations files for the `auth` app in the `migrations_auth` folder inside your `users` app.
 
 
 ## Thanks
