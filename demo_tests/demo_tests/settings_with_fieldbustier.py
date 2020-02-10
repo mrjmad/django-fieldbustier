@@ -18,6 +18,7 @@ ADD_FIELD_DJANGO_FIELDBUSTIER = [
         "CharField",
         ("An another CharField",),
         {"blank": True, "max_length": 200},
+        post_function=lambda x: setattr(x, "test_f", "test_ok"),
     )
 ]
 

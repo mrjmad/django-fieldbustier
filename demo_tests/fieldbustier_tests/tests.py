@@ -28,3 +28,7 @@ class DummyModelModifiedWithFieldBustierTest(TestCase):
     def test_new_dummy_charfield(self):
         DummyModel.objects.create(new_char_field="new field!")
         self.assertEqual(DummyModel.objects.all().first().new_char_field, "new field!")
+
+    def test_new_dummy_charfield_with_post_function(self):
+        dummy = DummyModel.objects.create(new_char_field="new field!")
+        self.assertEqual(dummy._meta.get_field("new_char_field").test_f, "test_ok")

@@ -22,13 +22,15 @@ def import_field_class(path_to_field_klass):
         return import_object(f"django.db.models.{path_to_field_klass}")
 
 
-def parse_fields_for_fieldbustier(add_list_fields):
+def parse_fields_for_fieldbustier(list_fields):
     fields = defaultdict(list)
-    for one_field in add_list_fields:
+    for one_field in list_fields:
         model_key = one_field.app_name, one_field.model_klass.lower()
         field_klass = import_field_class(one_field.field_klass)
 
         field_buste = field_klass(*one_field.args, **one_field.kwargs)
+        if one_field.post_function:
+            one_field.post_function(field_buste)
 
         fields[model_key].append((one_field.field_name, field_buste))
     return fields
