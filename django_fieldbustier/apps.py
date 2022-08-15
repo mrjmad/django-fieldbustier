@@ -73,6 +73,7 @@ def delete_fields_of_model(sender, **kwargs):
 
 
 class FieldBustierConfig(AppConfig):
+    default = True
     name = "django_fieldbustier"
     verbose_name = _("django_fieldbustier")
 
