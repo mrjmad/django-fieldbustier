@@ -1,3 +1,4 @@
+![gitHub Actions Status](https://github.com/mrjmad/django-fieldbustier/actions/workflows/actions.yml/badge.svg)
 # django-fieldbustier
 
 The purpose of this django-app is to allow you to add, delete, or modify fields in models from third-party applications outside of your django project.
