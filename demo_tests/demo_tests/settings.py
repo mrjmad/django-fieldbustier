@@ -77,12 +77,12 @@ WSGI_APPLICATION = "demo_tests.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.mysql",
-        "NAME": os.getenv("DJANGO_DB", "fieldbustier"),
-        "USER": os.getenv("DJANGO_DB_USER", "travis"),
-        "PASSWORD": os.getenv("DJANGO_DB_PASSWORD", ""),
-        "HOST": "",
-        "PORT": "",
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": os.getenv("DJANGO_DB", "github_actions"),
+        "USER": os.getenv("DJANGO_DB_USER", "fieldbustier"),
+        "PASSWORD": os.getenv("DJANGO_DB_PASSWORD", "fieldbustier"),
+        "HOST": "127.0.0.1",
+        "PORT": "5432",
         "OPTIONS": {},
     }
 }

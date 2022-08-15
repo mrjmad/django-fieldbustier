@@ -1,9 +1,9 @@
 from decimal import Decimal
 
+from demo_app.models import DummyModel
+
 from django.core.exceptions import FieldError
 from django.test import TestCase
-
-from demo_app.models import DummyModel
 
 
 class DummyModelModifiedWithFieldBustierTest(TestCase):
