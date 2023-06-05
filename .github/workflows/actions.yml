@@ -17,8 +17,8 @@ jobs:
     strategy:
       max-parallel: 4
       matrix:
-#          django-version: ["django~=1.11", "django~=2.0", "django~=2.1", "django~=2.2" ]
-          tox-env: ["lints", "django111", "django20", "django21", "django22"]
+#          django-version: ["django~=1.11", "django~=2.2", "django~=3.2", "django~=4.2" ]
+          tox-env: ["lints", "django111", "django22", "django32", "django42"]
     steps:
     - uses: actions/checkout@v3
     - name: Set up Python 3.8
