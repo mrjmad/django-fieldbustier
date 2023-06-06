@@ -5,7 +5,12 @@ from sys import argv
 from django.apps import AppConfig
 from django.apps import apps
 from django.conf import settings
-from django.utils.translation import ugettext_lazy as _
+
+
+try:
+    from django.utils.translation import ugettext_lazy as _
+except ImportError:
+    from django.utils.translation import gettext_lazy as _
 
 
 def import_object(path_to_object):

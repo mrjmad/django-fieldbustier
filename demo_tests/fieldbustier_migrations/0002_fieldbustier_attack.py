@@ -5,7 +5,6 @@ from django.db import models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [("demo_app", "0001_initial")]
 
     operations = [
